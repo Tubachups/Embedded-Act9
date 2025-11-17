@@ -4,13 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>YOLOv8 Webcam Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
-  <h1>Webcams</h1>
+  <h1>Webcam Object Detection</h1>
+  
+  <div class="stats-container">
+    <div class="stat-item">
+      Total Objects Detected: <span class="count" id="totalCount">0</span>
+    </div>
+    <div class="class-list" id="classList"></div>
+  </div>
+  
   <img src="{{ url_for('video') }}" width="50%" />
 
+  <script src="{{ url_for('static',filename='js/script.js') }}"></script>
 </body>
 
 </html>
