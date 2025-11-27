@@ -1,12 +1,14 @@
 from flask import Flask, render_template, Response, jsonify
+from gpiozero import DigitalInputDevice
 from ultralytics import YOLO
 import cv2
 import time
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(1)
 model = YOLO('yolov8n.pt')
+motion_sensor = DigitalInputDevice(16)
 
 # Global variable to store detection count
 detection_count = 0
@@ -72,7 +74,8 @@ def detection_stats():
     """API endpoint to get detection statistics"""
     return jsonify({
         'total': detection_count,
-        'classes': detected_classes
+        'classes': detected_classes,
+        'motion_detected': motion_sensor.is_active
     })
 
 if __name__ == "__main__":

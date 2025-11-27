@@ -39,3 +39,55 @@ img {
   display: flex;
   justify-content: space-between;
 }
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.status-active {
+  background-color: #f44336; /* Red */
+  box-shadow: 0 0 8px rgba(244, 67, 54, 0.5);
+}
+
+.status-inactive {
+  background-color: #4caf50; /* Green */
+}
+
+
+.alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.alert {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: white;
+  font-weight: bold;
+  animation: slideIn 0.3s ease;
+}
+
+.alert-warning {
+  background-color: #ff9800;
+}
+
+.alert-danger {
+  background-color: #f44336;
+}
+
+.alert-info {
+  background-color: #2196f3;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
