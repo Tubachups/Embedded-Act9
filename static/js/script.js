@@ -122,7 +122,7 @@ async function updateStats() {
 
 function checkAlerts(data) {
   if (alertRules.motionAlert && data.motion_detected && !lastMotionState) {
-    showAlert('⚠️ Motion Detected!', 'warning');
+    // showAlert('⚠️ Motion Detected!', 'warning');
     speak('Motion detected!');
   }
   lastMotionState = data.motion_detected;
@@ -133,7 +133,7 @@ function checkAlerts(data) {
   
   for (const [className, count] of Object.entries(data.classes)) {
     if (alertRules.watchedClasses.includes(className.toLowerCase())) {
-      showAlert(`👁️ ${className} detected (${count})`, 'info');
+      // showAlert(`👁️ ${className} detected (${count})`, 'info');
     }
   }
 }

@@ -4,27 +4,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YOLOv8 Webcam Detection</title>
+  <title>SURVEILLANCE SYSTEM V8</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
   <div class="alert-container" id="alertContainer"></div>
-  <h1>Webcam Object Detection</h1>
   
-  <div class="stats-container">
-    <div class="stat-item">
-      Total Objects Detected: <span class="count" id="totalCount">0</span>
+  <div class="dashboard-container">
+    <!-- Main Video Feed Area -->
+    <div class="video-section">
+        <div class="overlay-header">
+            <div class="live-indicator"><span class="blink">●</span> LIVE FEED</div>
+            <div class="system-title">YOLOv8 OBJECT DETECTION</div>
+        </div>
+        
+        <div class="video-wrapper">
+            <img src="{{ url_for('video') }}" alt="Surveillance Feed" />
+            <div class="corner-bracket top-left"></div>
+            <div class="corner-bracket top-right"></div>
+            <div class="corner-bracket bottom-left"></div>
+            <div class="corner-bracket bottom-right"></div>
+        </div>
+
+        <div class="camera-info">
+            <span>CAM-01: ACTIVE</span>
+            <span>RES: 640x480</span>
+            <span id="timestamp">--:--:--</span>
+        </div>
     </div>
-    <div class="stat-item">
-      Motion Sensor: <span id="motionStatus" class="status-badge"></span>
+
+    <!-- Sidebar Stats -->
+    <div class="sidebar">
+        <div class="sidebar-header">SYSTEM STATUS</div>
+        
+        <div class="stats-panel">
+            <div class="stat-row">
+                <span class="label">OBJECTS DETECTED</span>
+                <span class="count" id="totalCount">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="label">MOTION SENSOR</span>
+                <span id="motionStatus" class="status-badge">INITIALIZING</span>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <div class="panel-title">DETECTION LOG</div>
+            <div class="class-list" id="classList"></div>
+        </div>
+        
+        <div class="stats-panel log-panel">
+            <div class="panel-title">SYSTEM LOGS</div>
+            <div class="log-entry">> System initialized...</div>
+            <div class="log-entry">> Camera connected...</div>
+            <div class="log-entry">> Model loaded...</div>
+        </div>
     </div>
-    <div class="class-list" id="classList"></div>
   </div>
-  
-  <img src="{{ url_for('video') }}" width="50%" />
 
   <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+  <script>
+      function updateTime() {
+          const now = new Date();
+          document.getElementById('timestamp').textContent = now.toISOString().replace('T', ' ').split('.')[0];
+      }
+      setInterval(updateTime, 1000);
+      updateTime();
+  </script>
 </body>
 
 </html>
